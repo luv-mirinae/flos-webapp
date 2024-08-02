@@ -1,3 +1,10 @@
 spring:
   application:
     name: webapp
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/flos?serverTimezone=UTC
+    username: flos
+    password: YukyO:wWmOU3
+mybatis:
+  mapper-locations: classpath:/mapper/**/*.xml
