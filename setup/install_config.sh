@@ -4,6 +4,7 @@ check_nginx() {
     if [[ ! -x /usr/sbin/nginx ]]; then
         sudo dnf -y install nginx
     fi
+    sudo systemctl enable nginx
 }
 
 copy_config() {
