@@ -12,9 +12,17 @@ copy_config() {
     sudo cp ../nginx/conf.d/* /etc/nginx/conf.d/
 }
 
+update_selinux() {
+    if [[ -x /usr/sbin/setsebool ]]; then
+        # see also: sealert -a /var/log/audit/audit.log
+        sudo setsebool -P httpd_can_network_relay 1
+    fi
+}
+
 main() {
     check_nginx
     copy_config
+    update_selinux
 }
 
 main
