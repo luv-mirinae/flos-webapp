@@ -1,0 +1,20 @@
+services:
+  im-main-app:
+    container_name: im-main-app
+    image: nginx:alpine
+    restart: unless-stopped
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:Z
+      - ./default.conf:/etc/nginx/conf.d/default.conf:Z
+      - ./error_pages:/var/error_pages:Z
+      - ./www:/usr/share/nginx/html:Z
+    networks:
+      - im-main-app-network
+    ports:
+      - '127.0.0.1:8080:80'
+      - '::1:8080:80'
+
+networks:
+  im-main-app-network:
+    name: im-main-app-network
+    driver: bridge
